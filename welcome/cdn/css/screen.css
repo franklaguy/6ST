@@ -1,0 +1,67 @@
+/* @Author: R. Lewis @nSb Publishing */
+
+body {background-color:#000;}
+#container {width:900px;margin:0 auto;text-align:center;}
+.content {padding:10px;margin-top:3px;text-align:left;overflow:hidden;border:2px solid rgb(186,38,38);border-radius:10px;
+	background-image: linear-gradient(bottom, rgb(255,255,255) 45%, rgb(245,240,245) 69%, rgb(209,207,209) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(255,255,255) 45%, rgb(245,240,245) 69%, rgb(209,207,209) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 45%, rgb(245,240,245) 69%, rgb(209,207,209) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 45%, rgb(245,240,245) 69%, rgb(209,207,209) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 45%, rgb(245,240,245) 69%, rgb(209,207,209) 100%);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.45, rgb(255,255,255)),color-stop(0.69, rgb(245,240,245)),color-stop(1, rgb(209,207,209)));}
+#nav {text-align:right;border-radius:10px;margin-top:3px;padding-right:7px;
+	background-image: linear-gradient(bottom, rgb(186,38,38) 27%, rgb(152,28,28) 64%);
+	background-image: -o-linear-gradient(bottom, rgb(186,38,38) 27%, rgb(152,28,28) 64%);
+	background-image: -moz-linear-gradient(bottom, rgb(186,38,38) 27%, rgb(152,28,28) 64%);
+	background-image: -webkit-linear-gradient(bottom, rgb(186,38,38) 27%, rgb(152,28,28) 64%);
+	background-image: -ms-linear-gradient(bottom, rgb(186,38,38) 27%, rgb(152,28,28) 64%);
+  background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.27, rgb(186,38,38)),color-stop(0.64, rgb(152,28,28)));}
+.readMore {color:#fff;
+  background-image: linear-gradient(right 0, rgb(255,255,255) 0%, rgb(186,38,38) 59%, rgb(186,38,38) 77%);
+	background-image: -o-linear-gradient(right 0, rgb(255,255,255) 0%, rgb(186,38,38) 59%, rgb(186,38,38) 77%);
+	background-image: -moz-linear-gradient(right 0, rgb(255,255,255) 0%, rgb(186,38,38) 59%, rgb(186,38,38) 77%);
+	background-image: -webkit-linear-gradient(right 0, rgb(255,255,255) 0%, rgb(186,38,38) 59%, rgb(186,38,38) 77%);
+	background-image: -ms-linear-gradient(right 0, rgb(255,255,255) 0%, rgb(186,38,38) 59%, rgb(186,38,38) 77%);
+	background-image: -webkit-gradient(linear,right 0,left top,color-stop(0, rgb(255,255,255)),color-stop(0.59, rgb(186,38,38)),color-stop(0.77, rgb(186,38,38)));}
+
+
+/*  Header ********************** */
+#header {height:360px;border-radius:10px;
+  background:transparent url('../images/6STheader.png') no-repeat 0 0;}
+ #logo {border:2px solid white;border-radius:10px;width:387px;height:70px;cursor:pointer;}
+ #available {width:170px;height:50px;margin-top:215px;cursor:pointer;}
+ 
+/*  Navigation ****************** */
+  #nav img {padding:3px 3px 0 0;}
+  #nav ul {position:absolute;padding:6px;}
+  #nav ul li {padding: 7px;border-right: 1px solid #000000;}
+
+/*  Footer ********************** */
+#footer {color:#fff;clear:both;font-size:10px;margin-bottom:60px;}
+	#footer ul {border-top:2px solid rgb(186,38,38);border-bottom:2px solid rgb(186,38,38);margin:10px 0;}
+	#footer a {color:#fff;}
+	#footer a:hover {color:rgb(186,38,38);}
+
+/*  Content ********************* */
+.contentLeft {float:left;width:700px;padding-right:10px;}
+.contentRight {float:right;width:155px;padding-left:10px;text-align:center;}
+	img.book {margin-bottom:13px;box-shadow:3px 3px 4px #888;-webkit-box-shadow:3px 3px 4px #888;-moz-box-shadow:3px 3px 4px #888;}
+.content a {color:#999;}	
+.content a:hover {color:rgb(186,38,38);}	
+.twoColumn {border-left:1px solid rgb(186,38,38);}
+ul.about {border-top:2px solid rgb(186,38,38);padding-top:3px;}
+	ul.about li {display:block;text-align:left;}
+
+.indexLeft {float:left;overflow:hidden;}
+img.burst {float: left;margin: 0 0 0 -50px;padding-top:10px;}
+.indexInfo {float:right;overflow:hidden;text-align:center;padding-right:23px;}
+	.indexInfo h1 {color:rgb(186,38,38);font:normal 23px showGothic, sans serif;padding:0;}
+
+.googleLike {padding:10px 0 0;text-align:left;}
+.googleIndex{margin:-35px 0 0 -35px;}
+.a2a_dd {position: absolute;margin-top:2px;}
+
+#canvas {position:fixed;bottom:0;left:0;}
+	
+/*  Error *********************** */
+.error {text-align:center;}	

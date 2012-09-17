@@ -1,0 +1,15 @@
+<?php echo $this->doctype(); // Doctype HTML5 ?>
+<!--[if IE 7]>    <html lang="en-us" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]>    <html lang="en-us" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-us" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+<?php 
+	echo $this->headMeta(); // Meta Tags - keywords, description, content-type, viewport
+	echo $this->headTitle();  // Title - append to controller
+  echo $this->headLink()->appendStylesheet($this->baseUrl('cdn/css/global.css')) // css - normalizer
+												->appendStylesheet($this->baseUrl('cdn/css/screen.css?v=9')); // css - ccustom
+	//JavaScript at the bottom, except for Modernizr
+	echo $this->headScript()->prependFile('http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js', 'text/javascript'); // run jQuery
+   	?> 
+</head>
