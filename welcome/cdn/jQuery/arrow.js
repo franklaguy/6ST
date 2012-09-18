@@ -13,8 +13,8 @@ Arrow.prototype.draw = function(context){
 	context.fillStyle = this.color;
 	context.beginPath();
 	context.moveTo(-50, -25);
-	context.lineTo(0, -5);
-	context.lineTo(0, -10);
+	context.lineTo(0, -25);
+	context.lineTo(0, -50);
 	context.lineTo(50, 0);
 	context.lineTo(0, 50);
 	context.lineTo(0, 25);
@@ -24,4 +24,4 @@ Arrow.prototype.draw = function(context){
 	context.fill();
 	context.stroke();
 	context.restore();
-};
+}

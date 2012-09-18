@@ -1,8 +1,9 @@
 // Author: R.Lewis - Date: 9/15/12 - nSb Publishing *********
 	
 var TALES = {
-		frames: window.requestAnimationFrame,
+		frames: (window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (loop){ return window.setTimeout(loop, 1000/60);}),
 		canvas: document.getElementById('canvas'),
+		context: canvas.getContext('2d'),
 		header: function() {
 			$('#available').click(function(){ window.location = "http://www.amazon.com/dp/B006GRZ0D8";});
 			$('#logo').click(function(){ window.location = "http://www.sixstrangetales.com/";});
@@ -12,6 +13,24 @@ var TALES = {
 			if (document.createElement('canvas').getContext){
 				console.log("Success! The canvas element is supported.");
 			}
+		},
+		parseColor: function(color, toNumber){
+			if (toNumber === true) {
+			    if (typeof color === 'number') {
+			      return (color | 0); //chop off decimal
+			    }
+			    if (typeof color === 'string' && color[0] === '#') {
+			      color = color.slice(1);
+			    }
+			    return window.parseInt(color, 16);
+			  } else {
+			    if (typeof color === 'number') {
+			      //make sure our hexadecimal number is padded out
+			      color = '#' + ('00000' + (color | 0).toString(16)).substr(-6);
+			    }
+
+			    return color;
+			  }
 		},
 		mouse: function(findMe){
 			var mouse = {x:0, y: 0};
@@ -82,12 +101,6 @@ var TALES = {
 			}
 			window.addEventListener('keydown', onKeyboardEvent, false);
 		},
-		Arrow: function(){
-				this.x = 0;
-				this.y = 0;
-				this.color = "#ffff00";
-				this.rotation = 0;
-		},
 		initMouse: function(){ // find mouse
 			var _tales = this,
 				mouse = _tales.mouse(_tales.canvas);
@@ -105,66 +118,53 @@ var TALES = {
 				canvas.addEventListener('touchmove', onTouchEvent, false);
 			}
 		},
-		initArrow: function(){
+		initArrow: function(){ // Find mouse position and point to it with arrow
 			var _tales 	= this,
 				frames  = _tales.frames,
-				context = _tales.canvas.getContext('2d'),
 				mouse 	= _tales.mouse(_tales.canvas),
-				arrow 	= new _tales.Arrow();
+				arrow 	= new Arrow();
 			
 			arrow.x = _tales.canvas.width / 2;
 			arrow.y = _tales.canvas.height / 2;
-		
-			(function drawFrame(){
-				if (!frames){
-					frames = (window.webkitRequestAnimationFrame ||
-						      window.mozRequestAnimationFrame ||
-						      window.oRequestAnimationFrame ||
-						      window.msRequestAnimationFrame ||
-						      function (loop){
-							  	 return window.setTimeout(loop, 1000/60);
-						  	  }) ;
-				}
-				frames(drawFrame, _tales.canvas);
-				context.clearRect(0, 0, _tales.canvas.width, _tales.canvas.height);
+			
+			(function drawArrow(){
+				frames(drawArrow, _tales.canvas);
+				_tales.context.clearRect(0, 0, _tales.canvas.width, _tales.canvas.height);
 				
 				var dx = mouse.x - arrow.x,
 					dy = mouse.y - arrow.y;
 				
 				arrow.rotation = Math.atan2(dy, dx); // radians
-				arrow.draw(context);
+				arrow.draw(_tales.context);
+			}());
+		},
+		initBall: function(){
+			var _tales = this,
+				frames = _tales.frames,
+				ball = new Ball(),
+				angle = 0;
+			
+			ball.x = _tales.canvas.width / 2;
+			ball.y = _tales.canvas.height / 2;
+			
+			(function drawBall(){
+				frames(drawBall, _tales.canvas);
+				_tales.context.clearRect(0, 0, _tales.canvas.width, _tales.canvas.height);
+				
+				ball.y = canvas.height / 2 + Math.sin(angle) * 50;
+				angle += 0.1;
+				ball.draw(_tales.context);
 			}());
 		}
 }
 
-TALES.Arrow.prototype.draw = function(context){
-	context.save();
-	context.translate(this.x, this.y);
-	context.rotate(this.rotation);
-	context.lineWidth = 2;
-	context.fillStyle = this.color;
-	context.beginPath();
-	context.moveTo(-50, -25);
-	context.lineTo(0, -25);
-	context.lineTo(0, -50);
-	context.lineTo(50, 0);
-	context.lineTo(0, 50);
-	context.lineTo(0, 25);
-	context.lineTo(-50, 25);
-	context.lineTo(-50, -25);
-	context.closePath();
-	context.fill();
-	context.stroke();
-	context.restore();
-};
-
 window.onload = function () {
 	TALES.header(); 		// Add necessary Links to header
 	TALES.canvasCheck(); 	// Check to see if user has canvas capable modern browser
-	TALES.arrowKeys(); 		// Check if user hits arrow keys
-	TALES.initMouse(); 		// Find mouse position
+	TALES.arrowKeys(); 		// Check if user hits arrow keys - see console
+	TALES.initMouse(); 		// Find mouse position - click inside canvas and check console
 	TALES.initTouched(); 	// Find position - touch screen only
-	TALES.initArrow(); 	// Find position - touch screen only
+	TALES.initBall(); 		// Bouncing ball
 }
 
 
