@@ -145,15 +145,18 @@ var TALES = {
 				angle = 0,
 				centerY = 200,
 				range = 50,
-				speed = 0.05;
+				speed = 0.05,
+				xspeed = 1,
+				yspeed = 0.05;
 			
-			ball.x = _tales.canvas.width / 2;
+			ball.x = 0;
 			ball.y = _tales.canvas.height / 2;
 			
 			(function drawBall(){
 				frames(drawBall, _tales.canvas);
 				_tales.context.clearRect(0, 0, _tales.canvas.width, _tales.canvas.height);
-				
+
+				ball.x += xspeed;
 				ball.y = centerY / 2 + Math.sin(angle) * range;
 				angle += speed;
 				ball.draw(_tales.context);

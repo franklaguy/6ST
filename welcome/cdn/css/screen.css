@@ -61,7 +61,7 @@ img.burst {float: left;margin: 0 0 0 -50px;padding-top:10px;}
 .googleIndex{margin:-35px 0 0 -35px;}
 .a2a_dd {position: absolute;margin-top:2px;}
 
-#canvas {position:fixed;bottom:0;left:0;}
+#canvas {position:fixed;bottom:0;left:0;width:100%;}
 	
 /*  Error *********************** */
 .error {text-align:center;}	
