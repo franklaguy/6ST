@@ -62,6 +62,9 @@ img.burst {float: left;margin: 0 0 0 -50px;padding-top:10px;}
 .a2a_dd {position: absolute;margin-top:2px;}
 
 #canvas {position:fixed;bottom:0;left:0;width:100%;}
+table {table-layout: fixed;}
+table td {vertical-align:top}
+table#orgs tr {display:none;}
 	
 /*  Error *********************** */
 .error {text-align:center;}	
