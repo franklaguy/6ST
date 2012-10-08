@@ -14,10 +14,10 @@ class Application_Model_Test
 		$this->_dbTable = new Application_Model_DbTable_Test();
 		
 		$db = Zend_Db_Table::getDefaultAdapter();
-		$path = '/cdn/20120821_RIADataCenter.csv';
+		$path = 'cdn/20120821_RIADataCenter.csv';
 		$row = 1;
 		$result = array();
-		if (($handle = fopen("/cdn/20120821_RIADataCenter.csv", "r")) !== FALSE) {
+		if (($handle = fopen("cdn/20120821_RIADataCenter.csv", "r")) !== FALSE) {
 			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 				$num = count($data);
 				$row++;
@@ -74,10 +74,9 @@ class Application_Model_Test
 			$p = $row->p;
 			$q = $row->q;
 			$r = $row->r;
-			$z = $row->id;
 			
 			if($a !== 'NULL'){
-				$group .= "<tr id='".$z."'><td class='a'>" . $a . "</td><td class='b'>" . $b . "</td><td class='c'>" . $c . "</td><td class='d'>" . $d . "</td>";
+				$group .= "<tr><td class='a'>" . $a . "</td><td class='b'>" . $b . "</td><td class='c'>" . $c . "</td><td class='d'>" . $d . "</td>";
 				$group .= "<td class='e'>" . $e . "</td><td class='f'>" . $f . "</td><td class='g'>" . $g . "</td>";
 				$group .= "<td class='h'>" . $h . "</td><td class='i'>" . $i . "</td><td class='j'>" . $j . "</td>";
 				$group .= "<td class='k'>" . $k . "</td><td class='l'>" . $l . "</td><td class='m'>" . $m . "</td>";

@@ -143,23 +143,74 @@ var TALES = {
 				frames = _tales.frames,
 				ball = new Ball(),
 				angle = 0,
-				centerY = 200,
-				range = 50,
+				angleX = 0,
+				angleY = 0,
+				centerScale = 1.1,
+				centerX = _tales.canvas.width / 2,
+				centerY = _tales.canvas.height / 2,
+				range = 1,
+				radius = 50,
+				radiusX = 150,
+				radiusY = 50,
 				speed = 0.05,
 				xspeed = 1,
-				yspeed = 0.05;
+				yspeed = 0.05,
+				xpos = 0,
+				ypos = centerY,
+				mouse = _tales.mouse(_tales.canvas),
+				log = document.getElementById('log'),
+				rect = {x: _tales.canvas.width / 2, y: _tales.canvas.height / 2};
 			
+			_tales.context.lineWidth = 2;
 			ball.x = 0;
 			ball.y = _tales.canvas.height / 2;
 			
 			(function drawBall(){
 				frames(drawBall, _tales.canvas);
-				_tales.context.clearRect(0, 0, _tales.canvas.width, _tales.canvas.height);
-
+				//_tales.context.clearRect(0, 0, _tales.canvas.width, _tales.canvas.height);
+				
+				angle += speed;
 				ball.x += xspeed;
 				ball.y = centerY / 2 + Math.sin(angle) * range;
+				ball.scaleX = ball.scaleY = centerScale + Math.sin(angle) * range;			
+
+				ball.x = centerX + Math.sin(angle) * radiusX;
+				ball.y = centerY + Math.cos(angle) * radiusY;
+				angleX += xspeed;
+				angleY += yspeed;
+				
+				//ball.draw(_tales.context);
+			}());
+			
+			(function drawWave(){
+				//frames(drawWave, _tales.canvas);
+				
+				_tales.context.beginPath();
+				_tales.context.moveTo(xpos, ypos);
+				xpos += xspeed;
 				angle += speed;
-				ball.draw(_tales.context);
+				ypos = centerY + Math.sin(angle) * 20;
+				_tales.context.lineTo(xpos, ypos);
+				_tales.context.stroke();
+			}());
+			
+			(function drawLine(){
+				frames(drawLine, _tales.canvas);
+				_tales.context.clearRect(0, 0, _tales.canvas.width, _tales.canvas.height);
+				
+				var dx = rect.x - mouse.x,
+					dy = rect.y - mouse.y,
+					dist = Math.sqrt(dx * dx + dy * dy);
+				
+				_tales.context.fillStyle = "#000000";
+				_tales.context.fillRect(rect.x - 2, rect.y - 2, 4, 4);
+				_tales.context.beginPath();
+				_tales.context.moveTo(rect.x, rect.y);
+				_tales.context.lineTo(mouse.x, mouse.y);
+				_tales.context.closePath();
+				_tales.context.stroke();
+				
+				log.value = "distance: " + dist;
 			}());
 		}
 }

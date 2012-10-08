@@ -4,7 +4,7 @@ class Application_Model_DbTable_Test extends Zend_Db_Table_Abstract
 {
 
     protected $_name = 'test';
-    protected $_primary = 'id';
+    protected $_primary = 'a';
 
 }
 

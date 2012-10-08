@@ -12,7 +12,7 @@ class TestController extends Zend_Controller_Action
     {
 			
     	$csv = new Application_Model_Test();
-    	$this->view->data = $csv->getTest();
+     	$this->view->data = $csv->getTest();
 
     }
 
